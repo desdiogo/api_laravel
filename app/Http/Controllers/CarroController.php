@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\People;
+use App\Models\Carro;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class PeopleController extends Controller
+class CarroController extends Controller
 {
-    private People $people;
+    private Carro $carro;
 
     /**
      * PeopleController constructor.
-     * @param $people
+     * @param Carro $carro
      */
-    public function __construct(People $people)
+    public function __construct(Carro $carro)
     {
-        $this->people = $people;
+        $this->carro = $carro;
     }
 
     /**
@@ -27,8 +27,8 @@ class PeopleController extends Controller
      */
     public function index(): JsonResponse
     {
-        $people = People::all();
-        return response()->json($people);
+        $carro = Carro::with('marca')->get();
+        return response()->json($carro);
     }
 
     /**
@@ -40,8 +40,7 @@ class PeopleController extends Controller
     public function store(Request $request): JsonResponse
     {
         try {
-            $this->people->create($request->all());
-
+            $this->carro->create($request->all());
             $return = ['msg' => 'O registro foi salvo.'];
             return response()->json($return, 201);
         } catch (\Exception $e) {
@@ -58,9 +57,11 @@ class PeopleController extends Controller
      */
     public function show(int $id): JsonResponse
     {
-        $peopple = $this->people->find($id);
+        $peopple = $this->carro->find($id);
 
-        if(!$peopple) return response()->json(['msg' => 'O registro não foi localizado!'], 404);
+        if (!$peopple) {
+            return response()->json(['msg' => 'O registro não foi localizado!'], 404);
+        }
 
         return response()->json($peopple);
     }
@@ -74,7 +75,15 @@ class PeopleController extends Controller
      */
     public function update(Request $request, int $id): JsonResponse
     {
+        try {
+            $carroData = $request->all();
+            $carro = $this->carro->find($id);
+            $carro->update($carroData);
 
+            return response()->json(['msg' => 'O registro foi atualizado com sucesso!'], 201);
+        } catch (\Exception $e) {
+            return response()->json(['msg' => 'Houve um erro ao realizar operação de atualizar'], 500);
+        }
     }
 
     /**
@@ -83,7 +92,7 @@ class PeopleController extends Controller
      * @param $id
      * @return JsonResponse
      */
-    public function destroy(People $id): JsonResponse
+    public function destroy(Carro $id): JsonResponse
     {
         try {
             $id->delete();
