@@ -87,7 +87,7 @@ class PeopleController extends Controller
     {
         try {
             $id->delete();
-            return response()->json(['msg' => 'O registro foi removido com sucesso!'], 200);
+            return response()->json(['msg' => 'O registro foi removido com sucesso!']);
         } catch (\Exception $e) {
             return response()->json(['msg' => 'Ocorreu um erro na exlcusão do registro'], 500);
         }
