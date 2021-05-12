@@ -22,7 +22,6 @@ Route::get('/people/{id}', [PeopleController::class, 'show']);
 Route::post('/people', [PeopleController::class, 'store']);
 Route::delete('/people/{id}', [PeopleController::class, 'destroy']);
 
-Route::get('/carros', [CarroController::class, 'index']);
 Route::get('/carros/{id}', [CarroController::class, 'show']);
 Route::post('/carros', [CarroController::class, 'store']);
 Route::put('/carros/{id}', [CarroController::class, 'update']);
