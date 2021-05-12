@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PeopleController;
 use App\Http\Controllers\CarroController;
@@ -29,3 +29,15 @@ Route::put('/carros/{id}', [CarroController::class, 'update']);
 Route::delete('/carros/{id}', [CarroController::class, 'destroy']);
 
 Route::get('/marcas', [MarcaController::class, 'index']);
+
+Route::post('auth/login', [AuthController::class, 'login']);
+
+Route::middleware('apiJWT')->group(function() {
+    Route::prefix('auth')->group(function () {
+        Route::post('me', [AuthController::class, 'me']);
+    });
+
+    Route::prefix('carros')->group(function () {
+        Route::get('', [CarroController::class, 'index']);
+    });
+});
