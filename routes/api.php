@@ -34,6 +34,7 @@ Route::post('auth/login', [AuthController::class, 'login']);
 Route::middleware('apiJWT')->group(function() {
     Route::prefix('auth')->group(function () {
         Route::post('me', [AuthController::class, 'me']);
+        Route::post('logout', [AuthController::class, 'logout']);
     });
 
     Route::prefix('carros')->group(function () {
