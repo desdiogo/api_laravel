@@ -22,13 +22,6 @@ Route::get('/people/{id}', [PeopleController::class, 'show']);
 Route::post('/people', [PeopleController::class, 'store']);
 Route::delete('/people/{id}', [PeopleController::class, 'destroy']);
 
-Route::get('/carros/{id}', [CarroController::class, 'show']);
-Route::post('/carros', [CarroController::class, 'store']);
-Route::put('/carros/{id}', [CarroController::class, 'update']);
-Route::delete('/carros/{id}', [CarroController::class, 'destroy']);
-
-Route::get('/marcas', [MarcaController::class, 'index']);
-
 Route::post('auth/login', [AuthController::class, 'login']);
 
 Route::middleware('apiJWT')->group(function() {
@@ -39,5 +32,11 @@ Route::middleware('apiJWT')->group(function() {
 
     Route::prefix('carros')->group(function () {
         Route::get('', [CarroController::class, 'index']);
+        Route::get('{id}', [CarroController::class, 'show']);
+        Route::post('', [CarroController::class, 'store']);
+        Route::put('{id}', [CarroController::class, 'update']);
+        Route::delete('{id}', [CarroController::class, 'destroy']);
     });
+
+    Route::get('/marcas', [MarcaController::class, 'index']);
 });
