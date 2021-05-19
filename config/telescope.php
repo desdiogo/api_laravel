@@ -76,7 +76,7 @@ return [
     */
 
     'middleware' => [
-        'web',
+        'apiJWT',
         Authorize::class,
     ],
 
