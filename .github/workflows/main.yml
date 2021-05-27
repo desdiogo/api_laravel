@@ -23,6 +23,8 @@ jobs:
           cd api_laravel
           git checkout -f
           git pull
+        - name: Up Dependencies and up configurations
+        run: |
           composer install
           php artisan config:cache
           php artisan view:cache
