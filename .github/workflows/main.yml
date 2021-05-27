@@ -11,10 +11,16 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2
 
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+    - name: Deployment
+      uses: appleboy/ssh-action@main
       with:
-        server: ${{ secrets.ftp_host }}
-        username: ${{ secrets.ftp_user }}
-        password: ${{ secrets.ftp_password }}
-        server-dir: api_laravel/
+        host: ${{ secrets.SSH_HOST }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        username: ${{ secrets.SSH_USERNAME }}
+        script: |
+          cd /api_laravel
+          git checkout -f
+          git pull
+          php artisan config:cache
+          php artisan view:cache
+          php artisan route:cache
