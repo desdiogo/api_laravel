@@ -17,8 +17,9 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         username: ${{ secrets.SSH_USERNAME }}
+        passphrase: ${{ secrets.SSH_PASSPHRASE }}
         script: |
-          cd /api_laravel
+          cd api_laravel
           git checkout -f
           git pull
           composer install
