@@ -15,6 +15,13 @@ jobs:
       uses: php-actions/composer@v5
       with:
         php_version: 7.4
+        host: ${{ secrets.SSH_HOST }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        username: ${{ secrets.SSH_USERNAME }}
+        passphrase: ${{ secrets.SSH_PASSPHRASE }}
+        use_insecure_cipher: true
+        script: 'cd api_laravel'
+        run: composer install
 
     - name: Deployment
       uses: appleboy/ssh-action@master
