@@ -11,9 +11,11 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2
 
+    - name: Composer
+      uses: php-actions/composer@v5
+
     - name: Deployment
       uses: appleboy/ssh-action@master
-      uses: php-actions/composer@v5
       with:
         host: ${{ secrets.SSH_HOST }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
