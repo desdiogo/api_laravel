@@ -15,10 +15,10 @@ jobs:
       steps:
         - uses: appleboy/ssh-action@master
         - uses: php-actions/composer@v5
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        username: ${{ secrets.SSH_USERNAME }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        use_insecure_cipher: true
-        script: 'cd api_laravel && ./server_deploy.sh'
+          with:
+            host: ${{ secrets.SSH_HOST }}
+            key: ${{ secrets.SSH_PRIVATE_KEY }}
+            username: ${{ secrets.SSH_USERNAME }}
+            passphrase: ${{ secrets.SSH_PASSPHRASE }}
+            use_insecure_cipher: true
+            script: 'cd api_laravel && ./server_deploy.sh'
