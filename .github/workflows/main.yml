@@ -24,7 +24,4 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
         use_insecure_cipher: true
-        script: |
-          'cd api_laravel'
-          'git pull'
-          './server_deploy.sh'
+        script: 'cd api_laravel && git pull && ./server_deploy.sh'
