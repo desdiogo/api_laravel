@@ -19,5 +19,4 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
         use_insecure_cipher: true
-        server-dir: api_laravel/
-        script: './server_deploy.sh'
+        script: 'cd api_laravel && ./server_deploy.sh'
