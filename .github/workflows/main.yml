@@ -13,6 +13,8 @@ jobs:
 
     - name: Composer
       uses: php-actions/composer@v5
+        with:
+          php_version: 7.4
 
     - name: Deployment
       uses: appleboy/ssh-action@master
