@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PeopleController;
 use App\Http\Controllers\CarroController;
 use App\Http\Controllers\MarcaController;
 
