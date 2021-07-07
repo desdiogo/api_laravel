@@ -17,11 +17,6 @@ use App\Http\Controllers\MarcaController;
 |
 */
 
-Route::get('/people', [PeopleController::class, 'index']);
-Route::get('/people/{id}', [PeopleController::class, 'show']);
-Route::post('/people', [PeopleController::class, 'store']);
-Route::delete('/people/{id}', [PeopleController::class, 'destroy']);
-
 Route::post('auth/login', [AuthController::class, 'login']);
 
 Route::middleware('apiJWT')->group(function() {
